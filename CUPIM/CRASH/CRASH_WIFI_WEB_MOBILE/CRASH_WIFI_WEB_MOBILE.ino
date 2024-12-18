@@ -9,9 +9,9 @@ const char* password = "20242025";
 
 
 const byte DNS_PORT = 53;
-String ssidd = "GASPAR: ";
-String macClient = "";
+String ssidd = "CRASH: ";
 String nome = "";
+String macClient = "";
 IPAddress apIP(172, 217, 28, 1);
 DNSServer dnsServer;
 ESP8266WebServer server(80);
