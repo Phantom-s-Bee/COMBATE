@@ -5,7 +5,7 @@
 
 // Configurações de Wi-Fi
 const char* ssid = "ControleCarro";
-const char* password = "20242025";
+const char* password = "";
 
 
 const byte DNS_PORT = 53;
@@ -148,7 +148,7 @@ void setup() {
   ssidd +=  WiFi.macAddress();
   WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0)); // Configura o IP do AP
 
-  WiFi.softAP(ssidd, password);
+  WiFi.softAP(ssidd);
   Serial.println("Rede Wi-Fi iniciada");
   Serial.print("SSID: ");
   Serial.println(ssidd);
@@ -194,7 +194,7 @@ void setup() {
   "function atualizarContador() {"
   "  document.getElementById('contador').innerText = contador;"
   "  if (contador <= 0) {"
-  "    window.location.href = '/controleTank';"  // Redireciona ao zerar
+ // "    window.location.href = '/controleTank';"  // Redireciona ao zerar
   "  } else {"
   "    contador--;"
   "    setTimeout(atualizarContador, 1000);"
@@ -204,7 +204,7 @@ void setup() {
   "</script>"
   "</head><body>"
   "<h1>Aguarde o , " + nome + " terminar!</h1>"
-  "<p>Redirecionando em <span id='contador'>5</span>...</p>"
+  // "<p>Redirecionando em <span id='contador'>5</span>...</p>"
   "</body></html>";
 
 
@@ -261,7 +261,7 @@ void handleWelcomePage() {
   responseHTML += "function atualizarContador() {";
   responseHTML += "  document.getElementById('contador').innerText = contador;";
   responseHTML += "  if (contador <= 0) {";
-  responseHTML += "    window.location.href = '/controleJoystick';";  // Redireciona ao chegar em 0
+  responseHTML += "    window.location.href = '/controleBTN';";  // Redireciona ao chegar em 0
   responseHTML += "  } else {";
   responseHTML += "    contador--;";  // Decrementa o contador
   responseHTML += "    setTimeout(atualizarContador, 1000);";  // Chama a função a cada 1 segundo
@@ -311,7 +311,7 @@ void handleRootTank() {
                  </head>\
                  <body>\
                    <h1>Controle do Carro - Tanque</h1>\
-                   <h2><a href='\controleJoystick'>Trocar de controle</a></h2>\
+                   <h2><a href='\controleBTN'>Trocar de controle</a></h2>\
                    <div class='control-grid'>\
                      <button id='frenteEsq' class='button motor-btn' ontouchstart=\"moveCar('frenteEsq')\" ontouchend=\"stopCar('frenteEsq')\" onmousedown=\"moveCar('frenteEsq')\" onmouseup=\"stopCar('frenteEsq')\">Frente Esq</button>\
                      <button id='frenteDir' class='button motor-btn' ontouchstart=\"moveCar('frenteDir')\" ontouchend=\"stopCar('frenteDir')\" onmousedown=\"moveCar('frenteDir')\" onmouseup=\"stopCar('frenteDir')\">Frente Dir</button>\
@@ -319,8 +319,8 @@ void handleRootTank() {
                      <button id='trasDir' class='button motor-btn' ontouchstart=\"moveCar('trasDir')\" ontouchend=\"stopCar('trasDir')\" onmousedown=\"moveCar('trasDir')\" onmouseup=\"stopCar('trasDir')\">Tras Dir</button>\
                    </div>\
                    <br>\
-                   <button id='ledBtn' class='button device-btn' onclick=\"toggleLed()\">LED</button>\
-                   <button id='relayBtn' class='button device-btn' onclick=\"toggleRelay()\">ARMA</button>\
+                   <button id='ledBtn' class='button device-btn' onclick=\"toggleLed()\">LED 1</button>\
+                   <button id='relayBtn' class='button device-btn' onclick=\"toggleRelay()\">LED 2</button>\
                    <script>\
                      function moveCar(direction) {\
                        document.getElementById(direction).classList.add('active');\
@@ -386,8 +386,8 @@ void handleRootJoystick() {
       <div id='joystick'></div>
     </div>
     <br>
-    <button class='button' id='ledBtn' onclick="toggleLed()">LED</button>
-    <button class='button' id='relayBtn' onclick="toggleRelay()">ARMA</button>
+    <button class='button' id='ledBtn' onclick="toggleLed()">LED 1</button>
+    <button class='button' id='relayBtn' onclick="toggleRelay()">LED 2</button>
     <br>
     <button class='button' onclick="rotateCar('esquerda')">Girar Esquerda</button>
     <button class='button' onclick="rotateCar('direita')">Girar Direita</button>
@@ -496,8 +496,8 @@ void handleRootBTN() {
                      </table>\
                    </div>\
                    <div class='footer'>\
-                     <button id='ledBtn' class='button device-btn' onclick=\"toggleLed()\">LED</button>\
-                     <button id='relayBtn' class='button device-btn' onclick=\"toggleRelay()\">ARMA</button>\
+                     <button id='ledBtn' class='button device-btn' onclick=\"toggleLed()\">LED 1</button>\
+                     <button id='relayBtn' class='button device-btn' onclick=\"toggleRelay()\">LED 2</button>\
                    </div>\
                    <script>\
                      function moveCar(direction) {\
